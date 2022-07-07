@@ -1,0 +1,172 @@
+* {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #343434;
+  color: #fff;
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.container {
+  --dimension: 500;
+  font-size: calc(var(--dimension)/400 * 100%);
+  min-width: calc(1px * var(--dimension));
+  min-height: calc(1px * var(--dimension) + 100px);
+  border-top-left-radius: 50%;
+  border-top-right-radius: 50%;
+  background-color: #222;
+  box-shadow: 0px 0px 10px 5px #000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 10px;
+}
+.analog-clock {
+  position: relative;
+  border: solid 2px;
+  border-radius: 50%;
+  width: calc(1px * var(--dimension));
+  height: calc(1px * var(--dimension));
+  background-color: #222;
+  color: #999
+}
+.analog-clock::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: calc(20px * var(--dimension)/400);
+  height: calc(20px * var(--dimension)/400);
+  background: white;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+
+}
+.analog-clock .digits {
+  position: absolute;
+  text-align: center;
+  width: 100%;
+  height: 100%;
+  transform: rotate(calc(30deg * var(--i)));
+  display: flex;
+  justify-content: center;
+  padding: 10px;
+}
+
+.analog-clock .digits .value {
+  position: absolute;
+  transform: rotate(calc(-30deg * var(--i)));
+  font-weight: 800;
+  font-size: 2em
+}
+
+.analog-clock .hands {
+  position: absolute;
+  left: 50%;
+  bottom: 50%;
+  background-color: var(--color);
+  border-top-left-radius: 50%;
+  border-top-right-radius: 50%;
+  transform-origin: bottom;
+  transform: translate(-50%) rotate(calc(1deg * var(--rotation)));
+  display: flex;
+  justify-content: center;
+}
+.analog-clock .hands::after {
+  content: '';
+  width: calc(10px * var(--dimension)/400);
+  height: calc(10px * var(--dimension)/400);
+  background-color: var(--color);
+  position:absolute;
+  top: calc(-20px * var(--dimension)/400);
+  border-radius: 50%;
+  box-shadow: 0px 0px calc(30px * var(--dimension)/400) calc(12px * var(--dimension)/400) var(--color);
+}
+.analog-clock .hands.hours {
+  width: calc(20px * var(--dimension)/400);
+  height: 20%;
+}
+.analog-clock .hands.minutes {
+  width: calc(10px * var(--dimension)/400);
+  height: 30%;
+}
+
+.analog-clock .hands.seconds {
+  width: calc(4px * var(--dimension)/400);
+  height: 40%;
+}
+.analog-clock .separator {
+  position: absolute;
+  text-align: center;
+  width: 100%;
+  height: 100%;
+  transform: rotate(calc(6deg * var(--a)));
+  display: flex;
+  justify-content: center;
+}
+.analog-clock .separator:nth-child(5n) {
+  color: red;
+  font-weight: 800;
+}
+
+.analog-clock .dateValue {
+  position: absolute;
+}
+
+.digital-clock {
+  display: flex;
+  flex-grow:1;
+  justify-content: center;
+  align-items: center;
+  gap:10px;
+  font-weight: 800;
+  font-size: 3em;
+  padding: 10px;
+}
+.digital-clock .digits {
+  color: var(--color);
+  text-shadow: 0 0 10px var(--color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  transition: all 1s ease-in-out;
+}
+.digital-clock .digits:nth-child(1)::after, .digital-clock .digits:nth-child(2)::after {
+  content: ':';
+  color: #fff;
+  margin-left: 10px;
+}
+.digital-clock .digits:nth-child(2)::after {
+  animation: blink 1s infinite;
+}
+@keyframes blink {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+.digital-clock .ampm {
+  font-size: 0.5em;
+  font-weight: bold;
+  color: #888
+}
+.analog-clock .dateValue {
+  position:absolute;
+  bottom: 15%;
+  left: 50%;
+  transform: translateX(-50%);
+  color: purple;
+  font-weight: bold;
+  font-size: 1.5em;
+}
