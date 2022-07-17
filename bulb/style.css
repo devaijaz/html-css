@@ -1,0 +1,125 @@
+:root {
+  --off-color: gray;
+  --on-color: #fff;
+  --dimension: 200;
+}
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #444;
+}
+
+.bulb {
+  width: calc(1px * var(--dimension));
+  height: calc(1px * var(--dimension));
+  position: relative;
+  background-color: var(--off-color);
+  border-radius: 50%;
+
+}
+.bulb::before {
+  content: '';
+  position: absolute;
+  width: calc(0.5px * var(--dimension));
+  height: calc(1px *  var(--dimension));
+  left: 25%;
+  bottom: 50%;
+  background-color: var(--off-color);
+  border-top: solid 40px black;
+  z-index: 2;
+}
+.bulb .round {
+  width: 40px;
+  height: 40px;
+  position: absolute;
+  display: block;
+  background-color: transparent;
+  z-index: 100;
+}
+.bulb .round.left {
+  left: 16px;
+  top: -13px;
+  transform: rotate(-20deg);
+  border-bottom-right-radius: 40px;
+  box-shadow: 30px 30px 0 20px var(--off-color)
+}
+.bulb .round.right {
+  right: 16px;
+  top: -13px;
+  transform: rotate(110deg);
+  border-bottom-right-radius: 40px;
+  box-shadow: 30px 30px 0 20px var(--off-color)
+}
+
+.on .bulb .round.left, .on .bulb .round.right {
+  box-shadow: 20px 20px 0 10px var(--on-color);
+}
+
+.bulb .wire {
+  position: absolute;
+  display: block;
+  width:10px;
+  height: 400px;
+  background-color: black;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 100%;
+  z-index: 1;
+}
+
+
+.on .bulb, .on .bulb::before {
+  background-color: var(--on-color);
+}
+
+.on .bulb {
+  box-shadow: 0px 10px 190px 3px #eee, 
+              0px 10px 290px 3px #eee, 
+              0px 10px 390px 3px #eee, 
+              0px 10px 490px 3px #eee, 
+              0px 10px 590px 3px #eee, 
+              0px 10px 690px 3px #eee;  
+}
+
+body.on {
+  background: radial-gradient(#aaa, gray);
+
+}
+
+.switchboard {
+  background-color: #eee;
+  position: absolute;
+  top: 20px; 
+  left: 20px;
+  width: 150px;
+  height: 200px;
+  border-radius: 20px;
+}
+.switch {
+  position: relative;
+  border: solid 1px gray;
+  width: 40px;
+  height:90px;
+  z-index: 100;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background:linear-gradient(#aaa,#ccc, #aaa);
+  overflow: hidden;
+  cursor: pointer;
+}
+.switch::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 80px;
+  left: 0px;
+  top: 0px;
+  background-color: #ccc;
+  pointer-events: none;
+}
+.on .switch::after {
+  top: 10px;
+}

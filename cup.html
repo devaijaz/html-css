@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="normalize.css">
+  <link rel="stylesheet" href="./cup/style.css">
+  <title>Bulb</title>
+</head>
+
+<body>
+  <div class="cup">
+    <div class="top">
+      <div class="tea"></div>
+    </div>
+    <div class="handle"></div>
+    <div id="vapours" class="vapours">
+    </div>
+  </div>
+  <script>
+    const v = document.getElementById("vapours");
+    const f = document.createDocumentFragment();
+    for (let i = 0; i < 30; i++) {
+      let d = document.createElement('div');
+      d.classList.add("vapour");
+      d.style.setProperty("--i", Math.floor(Math.random() * 10));
+      f.appendChild(d);
+    }
+    v.appendChild(f);
+  </script>
+
+</body>
+
+</html>

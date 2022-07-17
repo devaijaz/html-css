@@ -1,0 +1,87 @@
+:root {
+  --cup-color: #aaa;
+  --cup-size: 300;
+  --cup-curve: 50px;
+}
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #444;
+}
+
+.cup {
+  position: relative;
+  width: calc(1px * var(--cup-size));
+  height: calc(1.1px * var(--cup-size));
+  background-color: var(--cup-color);
+  border-bottom-left-radius: var(--cup-curve);
+  border-bottom-right-radius: var(--cup-curve);
+  z-index: 10;
+}
+.cup .top {
+  position: absolute;
+  width: 100%;
+  height: 50px;
+  top: -25px;
+  background: linear-gradient(#fff, #777);
+  border-radius: 50%;
+  overflow: hidden;
+}
+.tea {
+  position: absolute;
+  width: 100%;
+  height: 50px;
+  top: 20px;
+  background: linear-gradient(rgb(238, 132, 62), rgb(138, 62, 11));
+  border-radius: 50%;
+}
+.handle {
+  position: absolute;
+  width: 190px;
+  height: 170px;
+  border: 40px solid var(--cup-color);
+  border-left: none;
+  border-top: none;
+  border-radius: 50%;
+  right:-90px;
+  top: 80px;
+  transform: rotate(-45deg);
+}
+
+.vapours {
+  position: relative;
+  width:100%;
+  display: flex;
+  gap: 2px;
+  justify-content: center;
+  top: -30px;
+}
+.vapour {
+  --i: 2;
+  height: 50px;
+  width: 4px;
+  background-color: #fff;
+  filter: blur(10px);
+  animation: fly 5s linear infinite;
+  animation-delay: calc(1s * var(--i));
+}
+
+@keyframes fly {
+  0% {
+    opacity: 0;
+    transform: translateY(0px);
+  }
+  15% {
+    opacity: 1;
+    transform: translateY(0px);
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-200px);
+  }
+}
